@@ -1,0 +1,23 @@
+{
+  "name": "node-cal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --harmony_destructuring tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/micahp0506/node-cal.git"
+  },
+  "author": "Micah Wells <micahp0506@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/micahp0506/node-cal/issues"
+  },
+  "homepage": "https://github.com/micahp0506/node-cal#readme",
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "mocha": "^2.3.4"
+  }
+}
