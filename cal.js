@@ -1,9 +1,6 @@
-'use strict'
+#!/usr/bin/env node
 
-const { expect } = require('chai');
+'use strict';
 
-describe('teset suite', () => {
-  it('true should be true', () {
-    expect(true).to.true;
-  }):
-});
+console.log('hey');
+
