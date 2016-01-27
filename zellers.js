@@ -9,7 +9,7 @@ module.exports = {
 }
 
    function month (month) {
-     console.log(month);
+     //console.log(month);
    
      if (month === 1) {
        return 13;
@@ -21,8 +21,8 @@ module.exports = {
    }
 
   function year (year, month) {
-    console.log(year);
-    console.log(month);
+    //console.log(year);
+    //console.log(month);
 
     if (month < 3) {
       let y = year - 1;
@@ -34,9 +34,9 @@ module.exports = {
   }
 
   function day (year1, month1, day1) {
-    console.log(year1);
-    console.log(month1);
-    console.log(day1);
+    //console.log(year1);
+    //console.log(month1);
+    //console.log(day1);
 
     let q = day1;
     let m = month(month1);

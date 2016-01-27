@@ -34,17 +34,13 @@ describe("Zeller's congruence", () => {
 
   describe('.getDay', () => {
     it('returns 2 (Tuesday) for March 1, 2016', () => {
-      expect(zellers.getDay(2016, 3, 1)).to.equal(2);
+      expect(zellers.getDay(2016, 1, 26)).to.equal(4);
       expect(zellers.getDay(2000, 3, 1)).to.equal(3);
       expect(zellers.getDay(2100, 3, 1)).to.equal(1);
       expect(zellers.getDay(2200, 3, 2)).to.equal(0);
       expect(zellers.getDay(2300, 3, 1)).to.equal(4);
 
     });
-      // 2000, 3, 1 === 3
-      // 2100, 3, 1 === 1
-      // 2200, 3, 2 === 0
-      // 2300, 3, 1 === 4
   });
 });
 
