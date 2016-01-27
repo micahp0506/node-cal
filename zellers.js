@@ -26,7 +26,7 @@ module.exports = {
 
     if (month < 3) {
       let y = year - 1;
-      console.log("y", y);
+      //console.log("y", y);
       return y;
     } else {
       return year;
@@ -37,10 +37,9 @@ module.exports = {
     //console.log(year1);
     //console.log(month1);
     //console.log(day1);
-
     let q = day1;
     let m = month(month1);
-    let y = year(year1);
+    let y = year(year1, month1);
     let k = y % 100;
     let j = Math.floor(y/100);
     let h =  (q + Math.floor((13*(m+1))/5) + k + Math.floor(k/4) + Math.floor(j/4) + (5*j)) % 7;
