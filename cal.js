@@ -9,18 +9,17 @@
   const generateYear = require('./lib/year');
   const generateDay = require('./lib/day');
   const zellers = require('./zellers');
-  let m = generateMonth.returnMonth();
-  let y = generateYear.returnYear();
+  let m;
+  let y;
   //let d = generateDay.returnDay();
-  let h = zellers.getDay(y, m, 1);
-  console.log("month", m);
-  console.log("year", y);
+  let h;  //console.log("month", m);
+  //console.log("year", y);
   //console.log("day", d);
-  console.log("h", h);
+  //console.log("h", h);
   const monthArr = ["    January ", "   February ", "     March ", "     April ", "      May", "     June ", "     July ", "    August ", "   September ", "    October ", "   November ", "   December "];
   //const daysArr = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   //const totalDays = [];
-  let adjustedM = m - 1;//Takes ISO month and reduces by 1 to get index point of month array
+  let adjustedM;//Takes ISO month and reduces by 1 to get index point of month array
   let secondLine ='Su Mo Tu We Th Fr Sa';
   let month;
   let days;
@@ -40,7 +39,7 @@
         l628 = '                                      ';
 
   const [,, ...args] = process.argv
-  console.log(args);
+  //console.log(args);
 
   if (args.length === 2) {
     const [month, year] = args;
@@ -60,6 +59,11 @@
     //h = zellers.getDay(y, m, 1);
     //checker();
   } else {
+    m = generateMonth.returnMonth();
+    y = generateYear.returnYear();
+    h = zellers.getDay(y, m, 1);
+    adjustedM = m - 1;
+    
     checker();
   }
 
@@ -78,16 +82,21 @@
     for (let i = 0; i < monthArr.length; i++) {
       if (adjustedM === i) {
         month = monthArr[i];
-        //console.log(h);
-        //console.log(m);
-        //console.log(month);
+        //console.log("from cal 85 h",h);
+        //console.log("from cal 86 1", m);
+        //console.log("from cal 87 month", month);
       }
     }
 
     console.log(month + y);
     console.log(secondLine);
+    //console.log(typeof(month));
+    //console.log(typeof(y));
+    //console.log(typeof(h))
+    //console.log(h)
     
     if (h === 1) {
+      //console.log("in")
       maker(18);
     } else if (h === 2) {
       maker(15);
@@ -122,6 +131,5 @@
     };
    //console.log("out")
   }
-
 } ());
 

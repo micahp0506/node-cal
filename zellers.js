@@ -9,20 +9,25 @@ module.exports = {
 }
 
    function month (month) {
-     //console.log(month);
+     //console.log("month", month);
    
      if (month === 1) {
-       return 13;
+       let month = 13;
+       //console.log("month", month)
+       return month;
      } else if (month === 2) {
-       return 14;
+       let month = 14;
+       //console.log("month", month)
+       return month;
      } else {
        return month;
+       //console.log("month", month)
      }
    }
 
   function year (year, month) {
-    //console.log(year);
-    //console.log(month);
+    //console.log("year", year);
+    //console.log("month", month);
 
     if (month < 3) {
       let y = year - 1;
@@ -34,11 +39,25 @@ module.exports = {
   }
 
   function day (year1, month1, day1) {
+    //console.log(year1, month1, day1);
     let q = day1;
     let m = month(month1);
     let y = year(year1, month1);
     let k = y % 100;
     let j = Math.floor(y/100);
-    let h =  (q + Math.floor(((m+1)*26)/10) + y + Math.floor(y/4) + (6 * Math.floor(y/100)) + Math.floor(y/400)) % 7;
-    return h;
+    let h = (q + Math.floor((13*(m+1))/5) + k + Math.floor(k/4) + Math.floor(j/4) + (5*j)) % 7;
+    //console.log("h", h);
+    //console.log("month1", month1);
+    month1 = parseInt(month1);
+    //console.log(typeof(month1));
+    //console.log("year1", year1);
+    year1 = parseInt(year1);
+    //console.log(typeof(year1));
+    if (month1 === 2 && ((year1 % 400 === 0) || (year1 % 4 === 0 && year1 % 100 !== 0))) {
+      h === 0 ? h = 6 : h = h - 1;
+      //console.log("after if h", h);
+      return h
+    } else {
+      return h;
+    }
   }
