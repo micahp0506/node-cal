@@ -80,6 +80,13 @@ describe("Zeller's congruence", () => {
     });
   });
 
+  describe('.getDay', () => {
+    it('returns 0 (Starts on Sunday) for Feb 1, 2032', () => {
+      expect(zellers.getDay(2032, 2, 1)).to.equal(0);
+    });
+  });
+
+
 
 });
 
