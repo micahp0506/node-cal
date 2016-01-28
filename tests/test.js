@@ -33,38 +33,8 @@ describe("Zeller's congruence", () => {
   });
 
   describe('.getDay', () => {
-    it('returns 3 (Start on Tuesday) for March 1, 2016', () => {
-      expect(zellers.getDay(2016, 3, 1)).to.equal(3);
-    });
-  });
-
-  describe('.getDay', () => {
-    it('returns 6 (Starts on Friday) for Jan 1, 2016', () => {
-      expect(zellers.getDay(2016, 1, 1)).to.equal(6);
-    });
-  });
-
-  describe('.getDay', () => {
-    it('returns 4 (Starts on Wednesday) for March 1, 2000', () => {
-      expect(zellers.getDay(2000, 3, 1)).to.equal(4);
-    });
-  });
-
-  describe('.getDay', () => {
-    it('returns 2 (Starts on Monday) for March 1, 2100', () => {
-      expect(zellers.getDay(2100, 3, 1)).to.equal(2);
-    });
-  });
-
-  describe('.getDay', () => {
     it('returns 0 (Starts on Saturday) for March 1, 2106', () => {
       expect(zellers.getDay(2016, 10, 1)).to.equal(0);
-    });
-  });
-
-  describe('.getDay', () => {
-    it('returns 5 (Starts on Thursday) for March 1, 2300', () => {
-      expect(zellers.getDay(2300, 3, 1)).to.equal(5);
     });
   });
 
@@ -75,20 +45,75 @@ describe("Zeller's congruence", () => {
   });
 
   describe('.getDay', () => {
-    it('returns 6 (Starts on Saturday) for Feb 1, 2020', () => {
-      expect(zellers.getDay(2020, 2, 1)).to.equal(6);
+    it('returns 2 (Starts on Monday) for March 1, 2100', () => {
+      expect(zellers.getDay(2100, 3, 1)).to.equal(2);
     });
   });
 
   describe('.getDay', () => {
-    it('returns 0 (Starts on Sunday) for Feb 1, 2032', () => {
-      expect(zellers.getDay(2032, 2, 1)).to.equal(0);
+    it('returns 3 (Start on Tuesday) for March 1, 2016', () => {
+      expect(zellers.getDay(2016, 3, 1)).to.equal(3);
+    });
+  });
+
+  describe('.getDay', () => {
+    it('returns 4 (Starts on Wednesday) for March 1, 2000', () => {
+      expect(zellers.getDay(2000, 3, 1)).to.equal(4);
+    });
+  });
+
+  describe('.getDay', () => {
+    it('returns 5 (Starts on Thursday) for March 1, 2300', () => {
+      expect(zellers.getDay(2300, 3, 1)).to.equal(5);
+    });
+  });
+
+  describe('.getDay', () => {
+    it('returns 5 (Starts on Thursday) for Feb 1, 2032', () => {
+      expect(zellers.getDay(2012, 3, 1)).to.equal(5);
+    });
+  });
+
+  describe('.getDay', () => {
+    it('returns 6 (Starts on Friday) for Jan 1, 2016', () => {
+      expect(zellers.getDay(2016, 1, 1)).to.equal(6);
+    });
+  });
+
+});
+
+describe("Is it a leap year?", () => {
+  const zellers = require('../zellers.js');
+  describe(".isLeapYear", () => {
+    it('testing 2016', () => {
+      expect(zellers.isLeapYear(2016)).to.be.true;
+    });
+  });
+
+  describe(".isLeapYear", () => {
+    it('testing 2032', () => {
+      expect(zellers.isLeapYear(2032)).to.be.true;
+    });
+  });
+
+  describe(".isLeapYear", () => {
+    it('testing 2017', () => {
+      expect(zellers.isLeapYear(2017)).to.be.false;
+    });
+  });
+
+  describe(".isLeapYear", () => {
+    it('testing 2101', () => {
+      expect(zellers.isLeapYear(2017)).to.be.false;
     });
   });
 
 
-
 });
+
+
+
+
 
 //describe('.center', () => {
   //it('should handle January', () => {

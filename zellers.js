@@ -5,7 +5,8 @@
 module.exports = {
   modifiedMonth: month,
   modifiedYear: year,
-  getDay: day
+  getDay: day,
+  isLeapYear: leapYear
 }
 
    function month (month) {
@@ -54,10 +55,20 @@ module.exports = {
     year1 = parseInt(year1);
     //console.log(typeof(year1));
     if (month1 === 2 && ((year1 % 400 === 0) || (year1 % 4 === 0 && year1 % 100 !== 0))) {
+      //console.log("h", h)
       h === 0 ? h = 6 : h = h - 1;
       //console.log("after if h", h);
-      return h
+      return h;
     } else {
       return h;
     }
   }
+
+  function leapYear (year1) {
+    if ((year1 % 400 === 0) || (year1 % 4 === 0 && year1 % 100 !== 0)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
