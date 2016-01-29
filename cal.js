@@ -16,7 +16,21 @@
   //console.log("year", y);
   //console.log("day", d);
   //console.log("h", h);
-  const monthArr = ["    January ", "   February ", "     March ", "     April ", "      May", "     June ", "     July ", "    August ", "   September ", "    October ", "   November ", "   December "];
+  const monthArr = ["    January ", "   February ", "     March ", "     April ", "      May ", "     June ", "     July ", "    August ", "   September ", "    October ", "   November ", "   December "];
+  const monthObj = {
+      1: ["January", 31],
+      2: ["February", 28],
+      3: ["March", 31],
+      4: ["April", 30],
+      5: ["May", 31],
+      6: ["June", 30],
+      7: ["July", 31],
+      8: ["August", 31],
+      9: ["September", 30],
+      10: ["October", 31],
+      11: ["November", 30],
+      12: ["December", 31]
+  };
   //const daysArr = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   //const totalDays = [];
   let adjustedM;//Takes ISO month and reduces by 1 to get index point of month array

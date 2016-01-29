@@ -8,10 +8,50 @@ describe('cal', () => {
     it('should handle the current month', () => {
       const goal = execSync('cal').toString();
       const output = execSync('./cal.js').toString();
-
       expect(output).to.equal(goal);
-    });  
+    });
   });
+
+  describe('March 4301', () => {
+    it('Computer Cal should equal my Cal', () => {
+      const goal = execSync('cal 3 4301').toString();
+      const output = execSync('./cal.js 3 4301').toString();
+      expect(output).to.equal(goal);
+    });
+  });
+
+  describe('August 1879', () => {
+    it('Computer Cal should equal my Cal', () => {
+      const goal = execSync('cal 8 1879').toString();
+      const output = execSync('./cal.js 8 1879').toString();
+      expect(output).to.equal(goal);
+    });
+  });
+
+  describe('February 1872', () => {
+    it('Computer Cal should equal my Cal', () => {
+      const goal = execSync('cal 2 1872').toString();
+      const output = execSync('./cal.js 2 1872').toString();
+      expect(output).to.equal(goal);
+    });
+  });
+
+  describe('April 1923', () => {
+    it('Computer Cal should equal my Cal', () => {
+      const goal = execSync('cal 4 1923').toString();
+      const output = execSync('./cal.js 4 1923').toString();
+      expect(output).to.equal(goal);
+    });
+  });
+
+  describe('November 2015', () => {
+    it('Computer Cal should equal my Cal', () => {
+      const goal = execSync('cal 11 2015').toString();
+      const output = execSync('./cal.js 11 2015').toString();
+      expect(output).to.equal(goal);
+    });
+  });
+
 });
 
 describe("Zeller's congruence", () => {
@@ -33,10 +73,17 @@ describe("Zeller's congruence", () => {
   });
 
   describe('.getDay', () => {
-    it('returns 0 (Starts on Saturday) for March 1, 2106', () => {
+    it('returns 0 (Starts on Saturday) for October 1, 2016', () => {
       expect(zellers.getDay(2016, 10, 1)).to.equal(0);
     });
   });
+
+  describe('.getDay', () => {
+    it('returns 0 (Starts on Saturday) for March 1, 2014', () => {
+      expect(zellers.getDay(2016, 10, 1)).to.equal(0);
+    });
+  });
+
 
   describe('.getDay', () => {
     it('returns 1 (Starts on Sunday) for Jan 1, 2017', () => {
@@ -47,6 +94,12 @@ describe("Zeller's congruence", () => {
   describe('.getDay', () => {
     it('returns 2 (Starts on Monday) for March 1, 2100', () => {
       expect(zellers.getDay(2100, 3, 1)).to.equal(2);
+    });
+  });
+
+  describe('.getDay', () => {
+    it('returns 2 (Starts on Monday) for Feb 1, 2016', () => {
+      expect(zellers.getDay(2016, 2, 1)).to.equal(2);
     });
   });
 
