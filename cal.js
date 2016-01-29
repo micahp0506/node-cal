@@ -31,6 +31,7 @@
       11: ["November", 30],
       12: ["December", 31]
   };
+  let monthLength;
   //const daysArr = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   //const totalDays = [];
   let adjustedM;//Takes ISO month and reduces by 1 to get index point of month array
@@ -39,45 +40,58 @@
   let days;
   let space = ' ';
   let calendar;
-  const l1 =   '                   1  2  3  4  5  6  7',
-        l2 =   ' 2  3  4  5  6  7  8  9 10 11 12 13 14',
-        l3 =   ' 9 10 11 12 13 14 15 16 17 18 19 20 21',
-        l4 =   '16 17 18 19 20 21 22 23 24 25 26 27 28',
-        l5 =   '23 24 25 26 27 28 29 30 31            ',
-        l6 =   '30 31                                 ',
-        l530 = '23 24 25 26 27 28 29 30               ',
-        l630 = '30                                    ',
-        l529 = '23 24 25 26 27 28 29                  ',
-        l629 = '                                      ',
-        l528 = '23 24 25 26 27 28                     ',
-        l628 = '                                      ';
+  //const l1 =   '                   1  2  3  4  5  6  7',
+        //l2 =   ' 2  3  4  5  6  7  8  9 10 11 12 13 14',
+        //l3 =   ' 9 10 11 12 13 14 15 16 17 18 19 20 21',
+        //l4 =   '16 17 18 19 20 21 22 23 24 25 26 27 28',
+        //l5 =   '23 24 25 26 27 28 29 30 31            ',
+        //l6 =   '30 31                                 ',
+        //l530 = '23 24 25 26 27 28 29 30               ',
+        //l630 = '30                                    ',
+        //l529 = '23 24 25 26 27 28 29                  ',
+        //l629 = '                                      ',
+        //l528 = '23 24 25 26 27 28                     ',
+        //l628 = '                                      ';
 
   const [,, ...args] = process.argv
   //console.log(args);
-
+  //Checking to see the number of arguments that are passed into the fucntion at the command line level
   if (args.length === 2) {
     const [month, year] = args;
+    // Getting the number of days in the month
+    monthLength = month===2 && zellers.leapYear(year) ? monthObj[month][1] + 1 : monthObj[month][1];
+    // Assigning month input to m
     m = month;
+    // Assigning year input to y
     y = year;
-    //console.log(y, m);
+    // Adjusting m for calculations
     adjustedM = m - 1;
+    // Getting the starting day for the month
     h = zellers.getDay(y, m, 1);
+    // Checking for year error message
+    checker();
+    //console.log(y, m);
     //h = h + 1;
     //console.log(h);
     //console.log(m);
-    checker();
-  //} else if (args.length === 1) {
+      //} else if (args.length === 1) {
     //const [year] = args;
     //y = year;
     //console.log(y);
     //h = zellers.getDay(y, m, 1);
     //checker();
   } else {
+    // getting current month
     m = generateMonth.returnMonth();
+    // getting current year
     y = generateYear.returnYear();
+    // getting the starting the day
     h = zellers.getDay(y, m, 1);
+    // Getting the number of days in the month
+    monthLength = m===2 && zellers.leapYear(y) ? monthObj[m][1] + 1 : monthObj[m][1];
+    // Adjusting m for calculations
     adjustedM = m - 1;
-    
+    // Checking for year error message
     checker();
   }
 
