@@ -12,80 +12,54 @@ module.exports = {
 }
 
    function month (month) {
-     //console.log("month", month);
-
+     
+     // If month is January have to make it 13
      if (month === 1) {
        let month = 13;
-       //console.log("month", month)
        return month;
+       // If month is February have to make 14
      } else if (month === 2) {
        let month = 14;
-       //console.log("month", month)
        return month;
-     } else {
+       } else {
        return month;
-       //console.log("month", month)
-     }
+       }
    }
 
+  // Function to make adjusment to year 
   function year (year, month) {
-    //console.log("year", year);
-    //console.log("month", month);
 
+    // month is less than 3 have to subtract 1
     if (month < 3) {
       let y = year - 1;
-      //console.log("y", y);
       return y;
-    } else {
+      } else {
       return year;
-    }
+      }
   }
 
+  // Getting h value for the starting point
   function day (year1, month1, day1) {
-    //console.log(year1, month1, day1);
+
+    // day1 will always be 1 for the 1st day of the month, to find the beginning day of the month
     let q = day1;
+    // Sending month1 to month() to check for the needed adjustment for calculation
     let m = month(month1);
+    // Sending year1 to year() to check for the needed adjustment for calculation
     let y = year(year1, month1);
+    // Getting the modulus value of y
     let k = y % 100;
+    // Rounding down y
     let j = Math.floor(y/100);
     //let currentYear = generateYear.returnYear();
     let h = (q + Math.floor((13*(m+1))/5) + k + Math.floor(k/4) + Math.floor(j/4) + (5*j)) % 7;
-    //console.log("h", h)
-    //console.log("h", h);
-    ////console.log("month1", month1);
-    //month1 = parseInt(month1);
-    //console.log(typeof(month1));
-    //console.log("year1", year1);
-    //year1 = parseInt(year1);
-    //console.log(typeof(year1));
-    //if (year1 < currentYear) {
-      //console.log("h", h);
-      //let leapYearCheck = leapYear(year1);
-      //if (leapYearCheck === false) {
-        //if (h === 5) {
-          //h = 0;
-          //return h;
-        //} else if (h === 6) {
-          //h = 1;
-          //return h;
-        //} else {
-          //h = h + 2;
-          //return h;
-        //}
-      //}
-    //}
 
-    //if (month1 === 2 && ((year1 % 400 === 0) || (year1 % 4 === 0 && year1 % 100 !== 0))) {
-      //console.log("h", h)
-      //h === 0 ? h = 6 : h = h - 1;
-      //console.log("after if h", h);
-      //return h;
-    //} else {
-      return h;
-    //}
+    return h;
   }
 
+  // Checking for leap year
   function leapYear (year1) {
+
     if ((year1 % 400 === 0) || (year1 % 4 === 0 && year1 % 100 !== 0)) {
       return true;
     } else {

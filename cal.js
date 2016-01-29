@@ -7,16 +7,14 @@
 
   const generateMonth = require('./lib/month');
   const generateYear = require('./lib/year');
-  const generateDay = require('./lib/day');
   const zellers = require('./zellers');
+  // variable for month used in zellers calc
   let m;
+  // variable for year used in zellers calc
   let y;
-  //let d = generateDay.returnDay();
-  let h;  //console.log("month", m);
-  //console.log("year", y);
-  //console.log("day", d);
-  //console.log("h", h);
-  const monthArr = ["    January ", "   February ", "     March ", "     April ", "      May ", "     June ", "     July ", "    August ", "   September ", "    October ", "   November ", "   December "];
+  // variable fot starting point in zellers calc
+  let h;
+  // Month name object with days in the month
   const monthObj = {
       1: ["January", 31],
       2: ["February", 28],
@@ -31,71 +29,77 @@
       11: ["November", 30],
       12: ["December", 31]
   };
+  // Checkin for leap year
+  let leapYear;
+  // Variable to hold the amount of days in a month
   let monthLength;
-  //const daysArr = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-  //const totalDays = [];
-  let adjustedM;//Takes ISO month and reduces by 1 to get index point of month array
+  // Takes ISO month and reduces by 1 to get index point of month array
+  let adjustedM;
+  // String of month header
   let secondLine ='Su Mo Tu We Th Fr Sa';
-  let month;
-  let days;
+  // Variable to hold month and year output
+  let monthAndYear;
+  // Variable to hold leading spaces in before starting day
+  let days = '';
+  // Variable to hold block count, used to assemble day block
+  let count = 0;
+  // Variable to hold space before month name on first row
+  let firstRowSpaces = 0;
+  // Variablle to hpld additional space
   let space = ' ';
+  // Variable to hold built first row(month & year)
+  let firstRow;
+  // Variable to hold built calendar(Days and number of days)
   let calendar;
-  //const l1 =   '                   1  2  3  4  5  6  7',
-        //l2 =   ' 2  3  4  5  6  7  8  9 10 11 12 13 14',
-        //l3 =   ' 9 10 11 12 13 14 15 16 17 18 19 20 21',
-        //l4 =   '16 17 18 19 20 21 22 23 24 25 26 27 28',
-        //l5 =   '23 24 25 26 27 28 29 30 31            ',
-        //l6 =   '30 31                                 ',
-        //l530 = '23 24 25 26 27 28 29 30               ',
-        //l630 = '30                                    ',
-        //l529 = '23 24 25 26 27 28 29                  ',
-        //l629 = '                                      ',
-        //l528 = '23 24 25 26 27 28                     ',
-        //l628 = '                                      ';
-
+  // Allowing arguments to be passed into ./cal.js
   const [,, ...args] = process.argv
-  //console.log(args);
   //Checking to see the number of arguments that are passed into the fucntion at the command line level
   if (args.length === 2) {
     const [month, year] = args;
-    // Getting the number of days in the month
-    monthLength = month===2 && zellers.leapYear(year) ? monthObj[month][1] + 1 : monthObj[month][1];
-    // Assigning month input to m
-    m = month;
+    // turning month into a number from a string
+    let month1 = parseInt(month);
+    // Assigning month1 input to m
+    m = month1;
     // Assigning year input to y
     y = year;
     // Adjusting m for calculations
-    adjustedM = m - 1;
+    //adjustedM = m - 1;
     // Getting the starting day for the month
     h = zellers.getDay(y, m, 1);
-    // Checking for year error message
-    checker();
-    //console.log(y, m);
-    //h = h + 1;
-    //console.log(h);
-    //console.log(m);
-      //} else if (args.length === 1) {
-    //const [year] = args;
-    //y = year;
-    //console.log(y);
-    //h = zellers.getDay(y, m, 1);
-    //checker();
-  } else {
-    // getting current month
-    m = generateMonth.returnMonth();
-    // getting current year
-    y = generateYear.returnYear();
-    // getting the starting the day
-    h = zellers.getDay(y, m, 1);
-    // Getting the number of days in the month
-    monthLength = m===2 && zellers.leapYear(y) ? monthObj[m][1] + 1 : monthObj[m][1];
-    // Adjusting m for calculations
-    adjustedM = m - 1;
-    // Checking for year error message
-    checker();
+    // Checking for leap year
+    leapYear = zellers.isLeapYear(y);
+    // Making day adjustment for leap year
+    if (m===2 && leapYear === true) {
+      monthLength = monthObj[m][1] + 1;
+      } else {
+        monthLength = monthObj[m][1]
+      }
+      // Checking for year error message
+      checker();
+
+    } else {
+      // getting current month
+      m = generateMonth.returnMonth();
+      // getting current year
+      y = generateYear.returnYear();
+      // getting the starting the day
+      h = zellers.getDay(y, m, 1);
+      // Checking for leap year
+      leapYear = zellers.isLeapYear(y);
+      // Getting the number of days in the month
+      // // Making day adjustment for leap year
+      if (m===2 && leapYear === true) {
+        monthLength = monthObj[m][1] + 1;
+        } else {
+          monthLength = monthObj[m][1]
+        }
+
+        // Checking for year error message
+        checker();
   }
 
   function checker () {
+    // Checking to see if year provided through argument are greater than 1753 and less than 9999
     if (y < 1753) {
       console.log("Please choose a year more recent than 1753");
     } else if (y > 9999) {
@@ -107,57 +111,49 @@
 
   function printer () {
 
-    for (let i = 0; i < monthArr.length; i++) {
-      if (adjustedM === i) {
-        month = monthArr[i];
-        //console.log("from cal 85 h",h);
-        //console.log("from cal 86 1", m);
-        //console.log("from cal 87 month", month);
+    // Gets month and year for monthObj
+    monthAndYear = `${monthObj[m][0]} ${y}`;
+    // Calculates first row spaces
+    firstRowSpaces = (20 - monthAndYear.length) / 2;
+    // Used for additional spacing
+    space = " ";
+    // Building first row
+    firstRow = space.repeat(firstRowSpaces)+monthAndYear;
+
+    //Outputs Months and year
+    console.log(firstRow);
+
+    // Adjusting h to fit into designated space
+    h === 0 ? h = 6 : h = h - 1;
+    // Add space before h
+    for (let i = 0; i < h; i++) {
+      days += "   ";
+      count += 1;
+    }
+
+    // loop to generate date numbers
+    for (var j = 1; j <= monthLength; j++) {
+      days += (j<10) ? " "+j+" " : j+" ";
+      count += 1;
+
+      if (count % 7===0) {
+        days = days.slice(0, -1);
+        days += "\n";
       }
     }
 
-    console.log(month + y);
-    console.log(secondLine);
-    //console.log(typeof(month));
-    //console.log(typeof(y));
-    //console.log(typeof(h))
-    //console.log(h)
-    
-    if (h === 1) {
-      //console.log("in")
-      maker(18);
-    } else if (h === 2) {
-      maker(15);
-    } else if (h === 3) {
-      maker(12);
-    } else if (h === 4) {
-      maker(9);
-    } else if (h === 5) {
-      maker(6);
-    } else if (h === 6) {
-      maker(3);
-    } else if (h === 0) {
-      maker(0)
-    };
-  }
+    // SLicing unneeded space
+    days = days.slice(0, -1);
 
+    if (days.match(/\n/g).length === 4) {
+      days += "\n";
+    } else if (days.match(/\n/g).length === 3) {
+      days += "\n\n";
+    }
 
-  function maker (start) {
-    console.log(l1.slice(start, start + 20) + '\n' + l2.slice(start, start + 20) + '\n' + l3.slice(start, start + 20) + '\n' + l4.slice(start, start + 20));
-    //console.log(typeof(m));
-    m = parseInt(m);
-    //console.log(typeof(m));
-    if (m === 1 || m === 3 || m === 5 || m === 7 || m === 8 || m === 10 || m === 12) {
-      //console.log("in")
-      console.log(l5.slice(start, start + 20).trim() + '\n' + l6.slice(start, start + 20).trim());
-    } else if (m === 4 || m === 6 || m === 9 || m === 11) {
-      console.log(l530.slice(start, start + 20).trim() + '\n' + l630.slice(start, start + 20).trim());
-    } else if (m === 2 && ((y % 400 === 0) || (y % 4 === 0 && y % 100 !== 0))) {
-      console.log(l529.slice(start, start + 20).trim() + '\n' + l629.slice(start, start + 20).trim());
-    } else if (m === 2 && ((y % 4 !== 0) || (y % 4 === 0 && y % 100 === 0 && y % 400 !== 0))) {
-       console.log(l528.slice(start, start + 20).trim() + '\n' + l628.slice(start, start + 20).trim());
-    };
-   //console.log("out")
-  }
-} ());
+    calendar = `${secondLine}\n${days}`;
+    console.log(calendar);
+
+   }
+  } ());
 
