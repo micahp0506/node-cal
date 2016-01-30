@@ -90,10 +90,10 @@
 
     console.log(month + y);
     console.log(secondLine);
-    //console.log(typeof(month));
-    //console.log(typeof(y));
-    //console.log(typeof(h))
-    //console.log(h)
+    console.log(typeof(month));
+    console.log(typeof(y));
+    console.log(typeof(h))
+    console.log(h)
     
     if (h === 1) {
       //console.log("in")
