@@ -8,6 +8,7 @@
   const generateMonth = require('./lib/month');
   const generateYear = require('./lib/year');
   const zellers = require('./zellers');
+  const yearOnly = require('./lib/yearonly.js');
   // variable for month used in zellers calc
   let m;
   // variable for year used in zellers calc
@@ -53,17 +54,16 @@
   let calendar;
   // Allowing arguments to be passed into ./cal.js
   const [,, ...args] = process.argv
+  // Accepting the arguments 
+  const [month, year] = args;
   //Checking to see the number of arguments that are passed into the fucntion at the command line level
   if (args.length === 2) {
-    const [month, year] = args;
     // turning month into a number from a string
     let month1 = parseInt(month);
     // Assigning month1 input to m
     m = month1;
     // Assigning year input to y
     y = year;
-    // Adjusting m for calculations
-    //adjustedM = m - 1;
     // Getting the starting day for the month
     h = zellers.getDay(y, m, 1);
     // Checking for leap year
@@ -76,6 +76,12 @@
       }
       // Checking for year error message
       checker();
+
+    } else if(args.length === 1) {
+        // Setting the input year the reason for y to be set to month, the variable for input is called month
+        y = month;
+        // Sending it to the fucntion to build the year only output
+        yearOnly.monthBlock(y);
 
     } else {
       // getting current month
@@ -93,10 +99,8 @@
         } else {
           monthLength = monthObj[m][1]
         }
+    }
 
-        // Checking for year error message
-        checker();
-  }
 
   function checker () {
     // Checking to see if year provided through argument are greater than 1753 and less than 9999
@@ -119,7 +123,6 @@
     space = " ";
     // Building first row
     firstRow = space.repeat(firstRowSpaces)+monthAndYear;
-
     //Outputs Months and year
     console.log(firstRow);
 
