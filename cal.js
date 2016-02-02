@@ -60,7 +60,8 @@
     // turning month into a number from a string
     let month1 = parseInt(month);
     // Sending month and year to build months
-    generateMonth.month2Args(month1, year);
+    let monthSection = generateMonth.month2Args(month1, year);
+    console.log(monthSection);
     
     } else {
       // getting current month
