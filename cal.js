@@ -55,28 +55,13 @@
   const [,, ...args] = process.argv
   //Checking to see the number of arguments that are passed into the fucntion at the command line level
   if (args.length === 2) {
+
     const [month, year] = args;
     // turning month into a number from a string
     let month1 = parseInt(month);
-    // Assigning month1 input to m
-    m = month1;
-    // Assigning year input to y
-    y = year;
-    // Adjusting m for calculations
-    //adjustedM = m - 1;
-    // Getting the starting day for the month
-    h = zellers.getDay(y, m, 1);
-    // Checking for leap year
-    leapYear = zellers.isLeapYear(y);
-    // Making day adjustment for leap year
-    if (m===2 && leapYear === true) {
-      monthLength = monthObj[m][1] + 1;
-      } else {
-        monthLength = monthObj[m][1]
-      }
-      // Checking for year error message
-      checker();
-
+    // Sending month and year to build months
+    generateMonth.month2Args(month1, year);
+    
     } else {
       // getting current month
       m = generateMonth.returnMonth();
