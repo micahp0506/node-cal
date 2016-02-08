@@ -12,6 +12,17 @@
     "type": "git",
     "url": "git+https://github.com/micahp0506/node-cal.git"
   },
+  "eslintConfig": {
+    "env": {
+      "mocha": true,
+      "node": true,
+      "es6": true
+    },
+    "extends": "eslint:recommended",
+    "rules": {
+      "no-console": 0
+    }
+  },
   "author": "Micah Wells <micahp0506@gmail.com>",
   "license": "MIT",
   "bugs": {
